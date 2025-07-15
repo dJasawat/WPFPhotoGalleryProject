@@ -1,0 +1,33 @@
+﻿<Window x:Name="window" x:Class="WPFPhotoGalleryProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFPhotoGalleryProject"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" Background="#FF3E7DD6"  WindowStartupLocation="CenterScreen" BorderBrush="{Binding ActualHeight, ElementName=window, Mode=OneWay}"  FontWeight="Bold" ResizeMode="NoResize">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <Button Content="Load Folder" Click="LoadFolder_Click" Margin="5"/>
+            <TextBox Width="200" x:Name="SearchBox" Margin="5" />
+            <Button Content="Search" Click="Search_Click" Margin="5"/>
+        </StackPanel>
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding FilteredPhotos}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <Image Source="{Binding FilePath}" Width="100" Height="100"/>
+                            <TextBlock Text="{Binding Tag}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
